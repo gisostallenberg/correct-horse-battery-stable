@@ -1,6 +1,13 @@
 {
     "name": "gisostallenberg/correct-horse-battery-staple",
     "description": "A password strength checker",
+    "keywords" : [
+        "password",
+        "strength",
+        "password strength",
+        "cracklib",
+        "cracklib-check"
+    ],
     "type": "library",
     "license": "MIT",
     "authors": [
@@ -9,11 +16,14 @@
             "email": "gisostallenberg@gmail.com"
         }
     ],
+    "minimum-stability": "stable",
     "require": {
         "php": ">=5.5.29",
         "symfony/process": "^3.0"
     },
-    "minimum-stability": "stable",
+    "suggest": {
+        "gisostallenberg/correct-horse-battery-staple-api": "The microservice for this password strength checker"
+    },
     "require-dev": {
         "phpunit/phpunit": "^5.0"
     },
