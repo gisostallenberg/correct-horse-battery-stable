@@ -2,10 +2,10 @@
 
 namespace GisoStallenberg\CorrectHorseBatteryStaple;
 
+use InvalidArgumentException;
 use Symfony\Component\Process\Exception\ProcessFailedException;
 use Symfony\Component\Process\Exception\RuntimeException;
 use Symfony\Component\Process\Process;
-use Symfony\Component\Process\ProcessBuilder;
 
 class CorrectHorseBatteryStaple {
     /**
@@ -78,6 +78,9 @@ class CorrectHorseBatteryStaple {
      * @throws ProcessFailedException
      */
     public function check($password) {
+        if (empty($password) ) {
+            throw new InvalidArgumentException('The password cannot be empty');
+        }
         $process = new Process($this->command);
         $process->setInput($password);
         $process->mustRun();

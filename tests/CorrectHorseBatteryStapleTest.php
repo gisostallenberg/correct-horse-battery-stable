@@ -21,6 +21,16 @@ class CorrectHorseBatteryStapleTest extends PHPUnit_Framework_TestCase
     }
 
     /**
+     * Tests if checking an empty password fails
+     *
+     * @expectedException InvalidArgumentException
+     */
+    public function testInvalidStringConstruct()
+    {
+        (new CorrectHorseBatteryStaple() )->check('');
+    }
+
+    /**
      * Tests if the getters return expected results.
      *
      * @dataProvider providePasswordStatusMessages
