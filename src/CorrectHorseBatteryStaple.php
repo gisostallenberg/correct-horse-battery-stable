@@ -56,11 +56,19 @@ class CorrectHorseBatteryStaple {
         $process->setTimeout(10);
         $process->run();
 
-        if (!$process->isSuccessful()) {
-            throw new RuntimeException('Unable to find cracklib-check command, please install cracklib-check');
+        if ($process->isSuccessful()) {
+            return trim($process->getOutput() );
         }
 
-        return trim($process->getOutput() );
+        $process = new Process('whereis cracklib-check');
+        $process->setTimeout(10);
+        $process->run();
+
+        if ($process->isSuccessful()) {
+            return preg_replace('/cracklib-check: ([^ ]*) .*/', '$1', trim($process->getOutput() ) );
+        }
+
+        throw new RuntimeException('Unable to find cracklib-check command, please install cracklib-check');
     }
 
     /**
